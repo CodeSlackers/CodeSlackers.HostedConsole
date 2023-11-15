@@ -35,4 +35,17 @@ public static class MenuManager
         return menu;
     }
 
+    public static ConsoleMenu SelectEnum<T>(Action<T, ConsoleMenu> selectEnum, string prompt) where T : struct, Enum
+    {
+        var questions = Enum.GetNames<T>().ToList();
+        var menu = new ConsoleMenu();
+        foreach (var question in questions)
+        {
+            menu.Add(question, () => selectEnum(Enum.Parse<T>(question), menu));
+        }
+
+        menu.Configure(config => config.WriteHeaderAction = () => Console.WriteLine(prompt));
+        return menu;
+    }
+
 }

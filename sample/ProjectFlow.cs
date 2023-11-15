@@ -6,7 +6,7 @@ namespace sample;
 
 public class ProjectFlow(IFlowIoService flowIoService, IStateService<SolutionBuilderState> stateService, ILogger<ProjectFlow> logger) : IFlow
 {
-    private readonly List<string> _questions = new() { "webapi", "worker", "blazor" };
+    
     
     public string FlowName => SolutionBuilderFlows.ProjectFlow;
     public string NextFlow { get; set; } = SolutionBuilderFlows.Quit;
@@ -14,9 +14,9 @@ public class ProjectFlow(IFlowIoService flowIoService, IStateService<SolutionBui
     {
         var state = stateService.GetState();
         var projectName = string.Empty;
-        var projectType = string.Empty;
+        ProjectType projectType = ProjectType.ClassLibrary;
 
-        var menuQuestions = MenuManager.AnswerQuestion(_questions, (menu, question) =>
+        var menuQuestions = MenuManager.SelectEnum<ProjectType>((question, menu) =>
         {
             projectType = question;
             menu.CloseMenu();
@@ -37,19 +37,16 @@ public class ProjectFlow(IFlowIoService flowIoService, IStateService<SolutionBui
     }
 
 
-    private async Task AddProject(SolutionBuilderState state, string projectName, string projectType)
+    private async Task AddProject(SolutionBuilderState state, string projectName, ProjectType projectType)
     {
         var projectTemplate = string.Empty;
         switch (projectType)
         {
-            case "webapi":
+            case ProjectType.WebApi:
                 projectTemplate = "webapi -minimal false";
                 break;
-            case "worker":
+            case ProjectType.ClassLibrary:
                 projectTemplate = "worker";
-                break;
-            case "blazor":
-                projectTemplate = "blazorwasm";
                 break;
         }
 
