@@ -8,7 +8,7 @@ public class SolutionFlow(
         IFlowIoService flowIoService, 
         IStateService<SolutionBuilderState> stateService,
         ILogger<SolutionFlow> logger) 
-    : IFlow<SolutionBuilderState>
+    : IFlow
 {
     public string FlowName => SolutionBuilderFlows.SolutionFlow;
     public string NextFlow { get; set; } = SolutionBuilderFlows.Quit;

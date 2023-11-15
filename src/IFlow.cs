@@ -1,6 +1,6 @@
 ﻿namespace CodeSlackers.HostedConsole;
 
-public interface IFlow<T>
+public interface IFlow
 {
     string FlowName { get; }
 

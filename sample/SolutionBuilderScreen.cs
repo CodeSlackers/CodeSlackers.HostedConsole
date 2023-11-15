@@ -5,9 +5,9 @@ namespace sample;
 public class SolutionBuilderScreen : IConsoleScreen
 {
     
-    private readonly IEnumerable<IFlow<SolutionBuilderState>> _flows;
+    private readonly IEnumerable<IFlow> _flows;
     public SolutionBuilderScreen(
-        IEnumerable<IFlow<SolutionBuilderState>> flows)
+        IEnumerable<IFlow> flows)
     {
         _flows = flows;
 

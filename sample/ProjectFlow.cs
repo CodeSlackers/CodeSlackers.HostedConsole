@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace sample;
 
-public class ProjectFlow(IFlowIoService flowIoService, IStateService<SolutionBuilderState> stateService, ILogger<ProjectFlow> logger) : IFlow<SolutionBuilderState>
+public class ProjectFlow(IFlowIoService flowIoService, IStateService<SolutionBuilderState> stateService, ILogger<ProjectFlow> logger) : IFlow
 {
     private readonly List<string> _questions = new() { "webapi", "worker", "blazor" };
     

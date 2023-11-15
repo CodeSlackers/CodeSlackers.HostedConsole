@@ -11,7 +11,7 @@ var screen = ConsoleScreenAppBuilder.CreateConfigureConsoleScreenApplication(
     {
         collection.AddSingleton<IFlowIoService, FlowIoService>();
         collection.AddSingleton<IStateService<SolutionBuilderState>, StateService>();
-        collection.AddTransient<IFlow<SolutionBuilderState>, SolutionFlow>();
+        collection.AddTransient<IFlow, SolutionFlow>();
         collection.AddTransient<IFlow<SolutionBuilderState>, ProjectFlow>();
         collection.AddSingleton<IConsoleScreen, SolutionBuilderScreen>();
     });
@@ -26,9 +26,9 @@ This is the main view of any flow set.  and the apps primary entry point to the 
 public class SolutionBuilderScreen : IConsoleScreen
 {
     
-    private readonly IEnumerable<IFlow<SolutionBuilderState>> _flows;
+    private readonly IEnumerable<IFlow> _flows;
     public SolutionBuilderScreen(
-        IEnumerable<IFlow<SolutionBuilderState>> flows)
+        IEnumerable<IFlow> flows)
     {
         _flows = flows;
 
@@ -71,7 +71,7 @@ public class SolutionFlow(
         IFlowIoService flowIoService, 
         IStateService<SolutionBuilderState> stateService,
         ILogger<SolutionFlow> logger) 
-    : IFlow<SolutionBuilderState>
+    : IFlow
 {
     public string FlowName => SolutionBuilderFlows.SolutionFlow;
     public string NextFlow { get; set; } = SolutionBuilderFlows.Quit;

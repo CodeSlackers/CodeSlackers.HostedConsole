@@ -9,8 +9,8 @@ var screen = ConsoleScreenAppBuilder.CreateConfigureConsoleScreenApplication(
     {
         collection.AddSingleton<IFlowIoService, FlowIoService>();
         collection.AddSingleton<IStateService<SolutionBuilderState>, StateService>();
-        collection.AddTransient<IFlow<SolutionBuilderState>, SolutionFlow>();
-        collection.AddTransient<IFlow<SolutionBuilderState>, ProjectFlow>();
+        collection.AddTransient<IFlow, SolutionFlow>();
+        collection.AddTransient<IFlow, ProjectFlow>();
         collection.AddSingleton<IConsoleScreen, SolutionBuilderScreen>();
     });
 
