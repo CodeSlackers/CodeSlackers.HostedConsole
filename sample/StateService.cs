@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using CodeSlackers.HostedConsole;
+using Microsoft.Extensions.Options;
 
 namespace sample;
 

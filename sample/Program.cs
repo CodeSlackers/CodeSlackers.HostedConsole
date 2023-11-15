@@ -15,12 +15,3 @@ var screen = ConsoleScreenAppBuilder.CreateConfigureConsoleScreenApplication(
     });
 
 await screen.Show();
-
-/*
-using CliWrap;
-var result = await Cli.Wrap("dotnet")
-       .WithArguments("new webapi --name Foobar")
-       .WithWorkingDirectory(@"d:\code\Scratchpad")
-       .ExecuteAsync();
-
-*/
